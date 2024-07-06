@@ -69,7 +69,7 @@ func telegramBot() {
 
 			case "/search_vacancies":
 				//Sending GET query to 127.0.0.1:8000/vacancies
-				url, _ := url.Parse("http://127.0.0.1:8000/search/vacancies")
+				url, _ := url.Parse("http://main-server/search/vacancies")
 				q := url.Query()
 				fmt.Printf("%#v\n", qs)
 				if qs[0] != "" {
