@@ -38,7 +38,7 @@ func telegramBot() {
 		fmt.Println("Token error: no token in .env file")
 	}
 	fmt.Println(token)
-	bot, err := tgbotapi.NewBotAPI(os.Getenv("TOKEN"))
+	bot, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		fmt.Println("Error while init bot")
 	}
@@ -69,14 +69,14 @@ func telegramBot() {
 
 			case "/search_vacancies":
 				//Sending GET query to 127.0.0.1:8000/vacancies
-				url, _ := url.Parse("http://127.0.0.1:8000/search/vacancies")
+				url, _ := url.Parse("http://main-server:8000/search/vacancies")
 				q := url.Query()
 				fmt.Printf("%#v\n", qs)
 				if qs[0] != "" {
-					q.Add("company", qs[0])
+					q.Add("name", qs[1])
 				}
 				if qs[1] != "" {
-					q.Add("name", qs[1])
+					q.Add("company", qs[0])
 				}
 				if qs[2] != "" {
 					q.Add("salary", qs[2])
